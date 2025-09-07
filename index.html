@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studious - Ultimate Study Companion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <div class="header-content">
+                <div class="brand">
+                    <i class="fas fa-graduation-cap brand-icon"></i>
+                    <h1>Studious</h1>
+                </div>
+                <p>Your ultimate study companion for focused learning and better retention</p>
+                <div class="user-menu">
+                    <div class="notification-bell">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <div class="user-avatar">JS</div>
+                    <span>John Student</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="card">
+                <div class="dashboard-header">
+                    <div class="dashboard-title">
+                        <h2 class="card-title">
+                            <i class="fas fa-chart-line"></i>
+                            Study Dashboard
+                        </h2>
+                        <div class="user-level">
+                            <div class="level-badge">
+                                <i class="fas fa-star"></i>
+                                <span id="user-level">Level 5</span>
+                            </div>
+                            <div class="xp-progress">
+                                <div class="xp-bar">
+                                    <div class="xp-fill" id="xp-fill" style="width: 60%"></div>
+                                </div>
+                                <span class="xp-text">
+                                    <span id="current-xp">1200</span> / <span id="next-level-xp">2000</span> XP
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="achievement-showcase" id="recent-achievement">
+                        <!-- Recent achievement will appear here -->
+                    </div>
+                </div>
+
+                <div class="stats-container">
+                    <div class="stat-card reward-card">
+                        <div class="stat-icon streak-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="study-streak">7</div>
+                            <div class="stat-label">Day Streak</div>
+                            <div class="stat-reward">+50 XP bonus!</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="pages-total">0</div>
+                            <div class="stat-label">Pages Read</div>
+                            <div class="stat-progress">
+                                <div class="mini-progress">
+                                    <div class="mini-fill" style="width: 70%"></div>
+                                </div>
+                                <span>23 to next reward</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card achievement-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="study-time">0h</div>
+                            <div class="stat-label">Study Time</div>
+                            <div class="stat-achievement">
+                                <i class="fas fa-trophy"></i>
+                                <span>Master Scholar</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card multiplier-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="flashcards-total">0</div>
+                            <div class="stat-label">Flashcards Created</div>
+                            <div class="stat-multiplier">x2 XP Active!</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <button class="action-btn primary" id="view-achievements">
+                        <i class="fas fa-trophy"></i>
+                        <span>Achievements</span>
+                        <div class="notification-dot" id="achievement-notification"></div>
+                    </button>
+                    <button class="action-btn" id="view-schedule">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Smart Schedule</span>
+                    </button>
+                    <button class="action-btn" id="view-insights">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Study Insights</span>
+                    </button>
+                    <button class="action-btn" id="daily-challenges">
+                        <i class="fas fa-target"></i>
+                        <span>Daily Goals</span>
+                        <div class="progress-ring">
+                            <div class="ring-fill" style="--progress: 75%"></div>
+                        </div>
+                    </button>
+                    <button class="btn btn-sm btn-outline" id="export-progress">
+                        <i class="fas fa-download"></i> Export
+                    </button>
+                </div>
+                
+                <div class="progress-container">
+                    <div class="progress-header">
+                        <span>Today's Progress</span>
+                        <span class="progress-percentage">65%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 65%"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Content Selection Section -->
+            <section id="content-selection" class="card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="fas fa-plus-circle"></i>
+                        Select Study Material
+                    </h2>
+                </div>
+                
+                <div class="content-options">
+                    <div class="content-option-card selected" id="select-pdf">
+                        <div class="option-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h3>PDF Document</h3>
+                        <p>Upload and study PDF materials with intelligent chunking</p>
+                        <div class="option-features">
+                            <span class="feature-tag">
+                                <i class="fas fa-check"></i> Smart Chunking
+                            </span>
+                            <span class="feature-tag">
+                                <i class="fas fa-check"></i> Annotations
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="content-option-card" id="select-video">
+                        <div class="option-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3>Video Content</h3>
+                        <p>Study video content with time-based segmentation</p>
+                        <div class="option-features">
+                            <span class="feature-tag">
+                                <i class="fas fa-check"></i> Auto Segments
+                            </span>
+                            <span class="feature-tag">
+                                <i class="fas fa-check"></i> Bookmarks
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="content-option-card" id="select-text">
+                        <div class="option-icon">
+                            <i class="fas fa-align-left"></i>
+                        </div>
+                        <h3>Text Content</h3>
+                        <p>Study text documents and articles effectively</p>
+                        <div class="option-features">
+                            <span class="feature-tag">
+                                <i class="fas fa-check"></i> Focus Mode
+                            </span>
+                            <span class="feature-tag">
+                                <i class="fas fa-check"></i> Speed Reading
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PDF Upload Section -->
+            <section id="upload-section" class="card">
+                <!-- Workflow Progress -->
+                <div class="workflow-header">
+                    <div class="workflow-steps">
+                        <div class="step active" id="step-upload">
+                            <span class="step-number">1</span>
+                            <span class="step-label">Upload</span>
+                        </div>
+                        <div class="step" id="step-configure">
+                            <span class="step-number">2</span>
+                            <span class="step-label">Configure</span>
+                        </div>
+                        <div class="step" id="step-study">
+                            <span class="step-number">3</span>
+                            <span class="step-label">Study</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-sm btn-outline" id="back-to-main-pdf">
+                        <i class="fas fa-arrow-left"></i> Back to Main
+                    </button>
+                </div>
+
+                <!-- Step 1: Upload Content -->
+                <div class="workflow-step-content" id="upload-step-content">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-upload"></i>
+                            Upload Your PDF
+                        </h2>
+                    </div>
+                    
+                    <div class="upload-area" id="drop-area">
+                        <div class="upload-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <h3>Drop your PDF here</h3>
+                        <p>or click to browse files</p>
+                        <input type="file" id="file-input" accept=".pdf" style="display: none;">
+                        <button class="btn btn-primary" id="browse-btn">
+                            <i class="fas fa-search"></i> Browse Files
+                        </button>
+                        <div class="upload-info">
+                            <small>Supported formats: PDF • Max size: 50MB</small>
+                        </div>
+                    </div>
+                    
+                    <div id="file-info" class="hidden file-preview">
+                        <div class="file-details">
+                            <i class="fas fa-file-pdf file-icon"></i>
+                            <div class="file-meta">
+                                <span class="file-name"></span>
+                                <span class="file-size"></span>
+                            </div>
+                        </div>
+                        <button class="btn btn-sm btn-danger" id="remove-file">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+
+                    <div class="workflow-actions">
+                        <button class="btn btn-primary btn-lg" id="proceed-to-config" disabled>
+                            Next: Configure Study <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Configuration -->
+                <div class="workflow-step-content hidden" id="config-step-content">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="fas fa-cog"></i>
+                            Study Configuration
+                        </h2>
+                    </div>
+
+                    <div class="config-simple">
+                        <div class="config-grid">
+                            <!-- Left Column -->
+                            <div class="config-column">
+                                <div class="form-group">
+                                    <label>
+                                        <i class="fas fa-file-alt"></i>
+                                        Study Pages
+                                    </label>
+                                    <div class="page-range">
+                                        <input type="number" id="start-page" placeholder="From" min="1" value="1">
+                                        <span>to</span>
+                                        <input type="number" id="end-page" placeholder="To" min="1">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>
+                                        <i class="fas fa-th"></i>
+                                        Study Chunks
+                                    </label>
+                                    <input type="range" id="chunk-count" min="1" max="10" value="4">
+                                    <div class="range-display">
+                                        <span id="chunk-value">4 chunks</span>
+                                        <small>Each chunk ≈ <span id="pages-per-chunk">0</span> pages</small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>
+                                        <i class="fas fa-clock"></i>
+                                        Study Timer
+                                    </label>
+                                    <div class="timer-presets">
+                                        <button type="button" class="preset-btn active" data-minutes="25">
+                                            <i class="fas fa-tomato"></i> 25min
+                                        </button>
+                                        <button type="button" class="preset-btn" data-minutes="45">
+                                            <i class="fas fa-clock"></i> 45min
+                                        </button>
+                                        <button type="button" class="preset-btn" data-minutes="60">
+                                            <i class="fas fa-hourglass"></i> 60min
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right Column -->
+                            <div class="config-column">
+                                <div class="form-group">
+                                    <label>
+                                        <i class="fas fa-brain"></i>
+                                        Study Mode
+                                    </label>
+                                    <select id="study-mode">
+                                        <option value="focus">Focus Reading</option>
+                                        <option value="review">Review & Annotate</option>
+                                        <option value="test">Create Flashcards</option>
+                                        <option value="speed">Speed Reading</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>
+                                        <i class="fas fa-palette"></i>
+                                        Reading Theme
+                                    </label>
+                                    <div class="theme-options">
+                                        <button type="button" class="theme-btn active" data-theme="light">
+                                            <i class="fas fa-sun"></i> Light
+                                        </button>
+                                        <button type="button" class="theme-btn" data-theme="dark">
+                                            <i class="fas fa-moon"></i> Dark
+                                        </button>
+                                        <button type="button" class="theme-btn" data-theme="sepia">
+                                            <i class="fas fa-leaf"></i> Sepia
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>
+                                        <i class="fas fa-bell"></i>
+                                        Notifications
+                                    </label>
+                                    <div class="notification-toggles">
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" id="break-reminders" checked>
+                                            <span class="slider"></span>
+                                            Break reminders
+                                        </label>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" id="progress-notifications" checked>
+                                            <span class="slider"></span>
+                                            Progress updates
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="study-goal-section">
+                            <div class="form-group">
+                                <label>
+                                    <i class="fas fa-bullseye"></i>
+                                    Study Goal (Optional)
+                                </label>
+                                <input type="text" id="study-goal" placeholder="What do you want to achieve in this session?">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="workflow-actions">
+                        <button class="btn btn-outline" id="back-to-upload">
+                            <i class="fas fa-arrow-left"></i> Back
+                        </button>
+                        <button class="btn btn-success btn-lg" id="start-study">
+                            Start Studying <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Video Upload Section -->
+            <section id="video-upload-section" class="card hidden">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="fas fa-video"></i>
+                        Study Video Content
+                    </h2>
+                    <button class="btn btn-sm btn-outline" id="back-to-main-video">
+                        <i class="fas fa-arrow-left"></i> Back to Main
+                    </button>
+                </div>
+                
+                <div class="video-input-container">
+                    <div class="form-group">
+                        <label for="video-url">
+                            <i class="fas fa-link"></i>
+                            Video URL
+                        </label>
+                        <input type="url" id="video-url" placeholder="Paste YouTube, Vimeo, or other video link">
+                        <div class="input-help">
+                            <i class="fas fa-info-circle"></i>
+                            Supports YouTube, Vimeo, and direct video links
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="video-title">
+                                <i class="fas fa-tag"></i>
+                                Video Title
+                            </label>
+                            <input type="text" id="video-title" placeholder="Enter a title for this video">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-clock"></i>
+                                Duration
+                            </label>
+                            <div class="duration-input">
+                                <input type="number" id="video-minutes" placeholder="MM" min="0" value="0">
+                                <span>:</span>
+                                <input type="number" id="video-seconds" placeholder="SS" min="0" max="59" value="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" id="process-video">
+                    <i class="fas fa-cogs"></i> Process Video
+                </button>
+            </section>
+
+            <!-- Text Upload Section -->
+            <section id="text-upload-section" class="card hidden">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="fas fa-align-left"></i>
+                        Study Text Content
+                    </h2>
+                    <button class="btn btn-sm btn-outline" id="back-to-main-text">
+                        <i class="fas fa-arrow-left"></i> Back to Main
+                    </button>
+                </div>
+                
+                <div class="text-input-container">
+                    <div class="form-group">
+                        <label for="text-title">
+                            <i class="fas fa-heading"></i>
+                            Title
+                        </label>
+                        <input type="text" id="text-title" placeholder="Enter a title for this content">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="text-content">
+                            <i class="fas fa-align-left"></i>
+                            Content
+                        </label>
+                        <textarea id="text-content" placeholder="Paste your text content here..." rows="10"></textarea>
+                        <div class="text-stats">
+                            <span id="word-count">0 words</span>
+                            <span id="char-count">0 characters</span>
+                            <span id="reading-time">~0 min read</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" id="process-text">
+                    <i class="fas fa-cogs"></i> Process Text
+                </button>
+            </section>
+
+            <!-- PDF Viewer Section -->
+            <section id="viewer-section" class="card hidden">
+                <div class="card-header">
+                    <h2 class="card-title" id="viewer-title">
+                        <i class="fas fa-file-pdf"></i>
+                        PDF Study Session
+                    </h2>
+                    <div class="viewer-controls">
+                        <div class="study-timer" id="study-timer">
+                            <span class="timer-display">25:00</span>
+                            <button class="btn btn-sm timer-btn" id="timer-toggle">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                        <div class="control-group">
+                            <button class="btn btn-sm" id="toggle-view-mode" title="Toggle view mode">
+                                <i class="fas fa-th-large"></i> Chunks
+                            </button>
+                            <button class="btn btn-sm btn-outline" id="add-bookmark">
+                                <i class="fas fa-bookmark"></i> Bookmark
+                            </button>
+                            <button class="btn btn-sm btn-success" id="create-flashcards">
+                                <i class="fas fa-layer-group"></i> Flashcards
+                            </button>
+                            <button class="btn btn-sm btn-outline" id="fullscreen-btn">
+                                <i class="fas fa-expand"></i> Fullscreen
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navigation Controls -->
+                <div class="viewer-toolbar">
+                    <div class="toolbar-section">
+                        <div class="zoom-controls">
+                            <button class="zoom-btn" id="zoom-out">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <span id="zoom-level">100%</span>
+                            <button class="zoom-btn" id="zoom-in">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="page-controls">
+                            <button class="btn btn-sm" id="prev-page">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <span id="page-info">Page 1 of 10</span>
+                            <button class="btn btn-sm" id="next-page">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="toolbar-section">
+                        <div class="chunk-controls">
+                            <button class="btn btn-outline" id="prev-chunk">
+                                <i class="fas fa-arrow-left"></i> Previous
+                            </button>
+                            <span id="chunk-info">Chunk 1 of 4</span>
+                            <button class="btn btn-outline" id="next-chunk">
+                                Next <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="study-actions">
+                            <button class="btn btn-warning btn-sm" id="take-break">
+                                <i class="fas fa-coffee"></i> Break
+                            </button>
+                            <button class="btn btn-info btn-sm" id="focus-mode">
+                                <i class="fas fa-eye"></i> Focus
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- PDF Viewer -->
+                <div class="pdf-container">
+                    <div class="pdf-viewer" id="pdf-viewer">
+                        <!-- PDF pages will be rendered here -->
+                    </div>
+                </div>
+                
+                <!-- Progress and Stats -->
+                <div class="study-stats">
+                    <div class="progress-container">
+                        <div class="progress-header">
+                            <span>Study Progress</span>
+                            <span class="progress-percentage" id="chunk-progress-text">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="chunk-progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="session-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-book-open"></i>
+                            <span>Pages Read: <strong id="pages-read">0</strong></span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Time Spent: <strong id="time-spent">0:00</strong></span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-layer-group"></i>
+                            <span>Flashcards: <strong id="flashcard-count">0</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Video Viewer Section -->
+            <section id="video-viewer-section" class="card hidden">
+                <div class="card-header">
+                    <h2 class="card-title" id="video-viewer-title">
+                        <i class="fas fa-video"></i>
+                        Video Study Session
+                    </h2>
+                    <div class="viewer-controls">
+                        <button class="btn btn-sm btn-outline" id="add-video-bookmark">
+                            <i class="fas fa-bookmark"></i> Bookmark
+                        </button>
+                        <button class="btn btn-sm" id="show-video-notes">
+                            <i class="fas fa-sticky-note"></i> Notes
+                        </button>
+                        <button class="btn btn-sm btn-outline" id="video-fullscreen-btn">
+                            <i class="fas fa-expand"></i> Fullscreen
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="video-container">
+                    <div class="video-player" id="video-player">
+                        <!-- Video will be embedded here -->
+                        <div class="video-placeholder">
+                            <i class="fas fa-video"></i>
+                            <h3 id="embedded-video-title">Video Title</h3>
+                            <p id="embedded-video-duration">Duration: 00:00</p>
+                        </div>
+                    </div>
+                    
+                    <div class="video-controls">
+                        <button class="btn btn-sm btn-outline" id="prev-video-chunk">
+                            <i class="fas fa-step-backward"></i> Previous
+                        </button>
+                        <span class="video-chunk-info" id="video-chunk-info">Chunk 1 of 5 - 00:00-05:00</span>
+                        <button class="btn btn-sm btn-outline" id="next-video-chunk">
+                            Next <i class="fas fa-step-forward"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="chunk-navigation" id="video-chunk-navigation">
+                    <!-- Chunk buttons will be generated here -->
+                </div>
+                
+                <div class="progress-container">
+                    <div class="progress-header">
+                        <span>Video Progress</span>
+                        <span class="progress-percentage" id="video-progress-text">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="video-chunk-progress" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <div class="study-actions">
+                    <button class="btn btn-warning" id="take-video-break">
+                        <i class="fas fa-coffee"></i> Take a Break
+                    </button>
+                    <button class="btn btn-success" id="start-video-focus">
+                        <i class="fas fa-eye"></i> Focus Mode
+                    </button>
+                    <button class="btn btn-primary" id="create-video-flashcards">
+                        <i class="fas fa-layer-group"></i> Create Flashcards
+                    </button>
+                </div>
+            </section>
+
+            <!-- Text Viewer Section -->
+            <section id="text-viewer-section" class="card hidden">
+                <div class="card-header">
+                    <h2 class="card-title" id="text-viewer-title">
+                        <i class="fas fa-align-left"></i>
+                        Text Study Session
+                    </h2>
+                    <div class="viewer-controls">
+                        <button class="btn btn-sm btn-outline" id="add-text-bookmark">
+                            <i class="fas fa-bookmark"></i> Bookmark
+                        </button>
+                        <button class="btn btn-sm" id="show-text-notes">
+                            <i class="fas fa-sticky-note"></i> Notes
+                        </button>
+                        <button class="btn btn-sm btn-outline" id="text-settings">
+                            <i class="fas fa-font"></i> Text Settings
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="text-display-settings hidden" id="text-display-settings">
+                    <div class="settings-group">
+                        <label>Font Size</label>
+                        <input type="range" id="font-size-slider" min="12" max="24" value="16">
+                        <span id="font-size-value">16px</span>
+                    </div>
+                    <div class="settings-group">
+                        <label>Line Height</label>
+                        <input type="range" id="line-height-slider" min="1.2" max="2.0" step="0.1" value="1.6">
+                        <span id="line-height-value">1.6</span>
+                    </div>
+                    <div class="settings-group">
+                        <label>Reading Width</label>
+                        <input type="range" id="reading-width-slider" min="600" max="1000" value="800">
+                        <span id="reading-width-value">800px</span>
+                    </div>
+                </div>
+                
+                <div class="text-container">
+                    <div class="text-content" id="text-content-display">
+                        <!-- Text content will be displayed here -->
+                    </div>
+                </div>
+                
+                <div class="progress-container">
+                    <div class="progress-header">
+                        <span>Reading Progress</span>
+                        <span class="progress-percentage" id="text-progress-text">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="text-progress" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <div class="text-navigation">
+                    <button class="btn btn-outline" id="prev-text-chunk">
+                        <i class="fas fa-arrow-left"></i> Previous Section
+                    </button>
+                    <div class="text-info">
+                        <span id="text-chunk-info">Section 1 of 5</span>
+                    </div>
+                    <button class="btn btn-outline" id="next-text-chunk">
+                        Next Section <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <div class="study-actions">
+                    <button class="btn btn-warning" id="take-text-break">
+                        <i class="fas fa-coffee"></i> Take a Break
+                    </button>
+                    <button class="btn btn-success" id="start-text-focus">
+                        <i class="fas fa-eye"></i> Focus Mode
+                    </button>
+                    <button class="btn btn-primary" id="create-text-flashcards">
+                        <i class="fas fa-layer-group"></i> Create Flashcards
+                    </button>
+                </div>
+            </section>
+
+            <!-- Reader View Section -->
+            <section id="reader-section" class="card hidden">
+                <div class="reader-view">
+                    <div class="reader-header">
+                        <button class="btn btn-sm btn-outline" id="reader-settings">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                        <div class="timer-display" id="reader-timer">25:00</div>
+                        <button class="btn btn-sm btn-danger" id="exit-reader">
+                            <i class="fas fa-times"></i> Exit
+                        </button>
+                    </div>
+                    
+                    <div class="quote-container">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p id="motivational-quote">The journey of a thousand miles begins with a single step.</p>
+                        <p id="quote-author">- Lao Tzu</p>
+                    </div>
+                    
+                    <div class="reader-content">
+                        <div class="pdf-container" id="reader-pdf-container">
+                            <div class="pdf-viewer" id="reader-pdf">
+                                <!-- Current chunk page will be rendered here -->
+                            </div>
+                        </div>
+                        
+                        <div class="text-container hidden" id="reader-text-container">
+                            <div class="text-content" id="reader-text">
+                                <!-- Text content will be displayed here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="reader-navigation">
+                        <button class="btn btn-outline" id="reader-prev">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </button>
+                        <span id="reader-page-info">Page 1 of 10</span>
+                        <button class="btn btn-outline" id="reader-next">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Flashcards Section -->
+            <section id="flashcards-section" class="card hidden">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="fas fa-layer-group"></i>
+                        Study Flashcards
+                    </h2>
+                    <div class="flashcard-controls-header">
+                        <span id="flashcard-progress">1/5</span>
+                        <button class="btn btn-sm btn-outline" id="shuffle-cards">
+                            <i class="fas fa-random"></i> Shuffle
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="flashcard-container">
+                    <div class="flashcard" id="flashcard">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                <div class="card-type">Question</div>
+                                <h3>What is the capital of France?</h3>
+                                <div class="flip-hint">
+                                    <i class="fas fa-hand-pointer"></i>
+                                    Click to reveal answer
+                                </div>
+                            </div>
+                            <div class="flashcard-back">
+                                <div class="card-type">Answer</div>
+                                <h3>Paris</h3>
+                                <div class="flip-hint">
+                                    <i class="fas fa-undo"></i>
+                                    Click to go back
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flashcard-controls">
+                    <button class="btn btn-outline" id="flashcard-prev">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="btn btn-primary" id="flashcard-flip">
+                        <i class="fas fa-sync-alt"></i> Flip Card
+                    </button>
+                    <button class="btn btn-outline" id="flashcard-next">
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <div class="difficulty-feedback">
+                    <p>How well did you know this?</p>
+                    <div class="feedback-buttons">
+                        <button class="btn btn-danger" id="dont-know-card">
+                            <i class="fas fa-times"></i> Need Practice
+                        </button>
+                        <button class="btn btn-warning" id="partial-know-card">
+                            <i class="fas fa-question"></i> Partially Know
+                        </button>
+                        <button class="btn btn-success" id="know-card">
+                            <i class="fas fa-check"></i> Know Well
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="flashcard-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Known:</span>
+                        <span class="stat-value" id="known-count">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Need Practice:</span>
+                        <span class="stat-value" id="practice-count">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Remaining:</span>
+                        <span class="stat-value" id="remaining-count">5</span>
+                    </div>
+                </div>
+                
+                <button class="btn btn-outline" id="exit-flashcards">
+                    <i class="fas fa-arrow-left"></i> Back to Document
+                </button>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Studious v3.0</span>
+                </div>
+                <p>Designed to enhance your learning experience</p>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Privacy</a>
+                    <a href="#" class="footer-link">Terms</a>
+                    <a href="#" class="footer-link">Support</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
