@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/studious.git"
+    "url": "git+https://github.com/ngorkon/studious.git"
   },
   "keywords": [
     "study",
@@ -30,12 +30,12 @@
     "achievement-system",
     "focus-timer"
   ],
-  "author": "Your Name",
+  "author": "ngorkon",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yourusername/studious/issues"
+    "url": "https://github.com/ngorkon/studious/issues"
   },
-  "homepage": "https://github.com/yourusername/studious#readme",
+  "homepage": "https://github.com/ngorkon/studious#readme",
   "engines": {
     "node": ">=14.0.0"
   },
@@ -51,6 +51,6 @@
   "dependencies": {},
   "funding": {
     "type": "github",
-    "url": "https://github.com/sponsors/yourusername"
+    "url": "https://github.com/sponsors/ngorkon"
   }
 }

@@ -55,7 +55,7 @@
 ### Installation
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/studious.git
+   git clone https://github.com/ngorkon/studious.git
    cd studious
    ```
 
