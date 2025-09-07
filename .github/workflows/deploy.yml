@@ -1,0 +1,64 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: npm install --only=dev
+      
+    - name: Run tests
+      run: npm test
+      
+    - name: Deploy to GitHub Pages
+      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./
+        exclude_assets: '.github,node_modules,*.md'
+        
+    - name: Create Release
+      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ github.run_number }}
+        release_name: Release v${{ github.run_number }}
+        body: |
+          🚀 **Studious - Ultimate Study Companion**
+          
+          ### ✨ New in this release:
+          - Check the commit messages for latest features
+          - Bug fixes and performance improvements
+          - Enhanced user experience
+          
+          ### 📱 Try it now:
+          - [Live Demo](https://yourusername.github.io/studious)
+          - Download and run locally
+          
+          ### 🎯 Features:
+          - 📚 Multi-format content support (PDF, Video, Text)
+          - 🧠 Intelligent flashcard auto-generation  
+          - ⏱️ Advanced time management with Smart Pomodoro
+          - 🏆 Gamified reward system with 35+ achievements
+          - 📊 Comprehensive analytics and habit tracking
+          - 🎨 Modern responsive UI with dark/light themes
+        draft: false
+        prerelease: false

@@ -1,0 +1,56 @@
+{
+  "name": "studious-study-companion",
+  "version": "2.0.0",
+  "description": "Ultimate Study Companion - Transform your studying experience with gamified learning, advanced time management, and intelligent content processing",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "npx serve .",
+    "dev": "live-server --port=8000",
+    "test": "echo \"Tests coming soon\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/studious.git"
+  },
+  "keywords": [
+    "study",
+    "education",
+    "productivity",
+    "flashcards",
+    "pomodoro",
+    "time-management",
+    "gamification",
+    "learning",
+    "pdf",
+    "analytics",
+    "habit-tracking",
+    "student-tools",
+    "study-companion",
+    "achievement-system",
+    "focus-timer"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yourusername/studious/issues"
+  },
+  "homepage": "https://github.com/yourusername/studious#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie <= 11"
+  ],
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "dependencies": {},
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/yourusername"
+  }
+}
