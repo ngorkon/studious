@@ -1,53 +1,44 @@
 #!/usr/bin/env python3
-"""
-Simple development server for Studious
-Run this script to start a local development server
-"""
-
 import http.server
 import socketserver
 import webbrowser
 import os
 import sys
-from pathlib import Path
 
-PORT = 8000
-DIRECTORY = Path(__file__).parent
+PORT = 8080
 
-class StudiousHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, directory=DIRECTORY, **kwargs)
-    
+class Handler(http.server.SimpleHTTPRequestHandler):
     def end_headers(self):
-        # Add CORS headers for local development
-        self.send_header('Access-Control-Allow-Origin', '*')
-        self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-        self.send_header('Access-Control-Allow-Headers', 'Content-Type')
+        self.send_header('Cache-Control', 'no-cache')
         super().end_headers()
 
+    def guess_type(self, path):
+        mimetype = super().guess_type(path)
+        path_str = str(path)
+        if path_str.endswith('.js'):
+            return 'application/javascript'
+        elif path_str.endswith('.css'):
+            return 'text/css'
+        return mimetype
+
 def main():
-    print("🚀 Starting Studious Development Server...")
-    print(f"📂 Serving from: {DIRECTORY}")
-    print(f"🌐 Port: {PORT}")
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
     
-    # Check if port is available
-    with socketserver.TCPServer(("", PORT), StudiousHTTPRequestHandler) as httpd:
-        print(f"✅ Server running at http://localhost:{PORT}")
-        print(f"📚 Open Studious at: http://localhost:{PORT}/index.html")
-        print("\n💡 Press Ctrl+C to stop the server")
+    with socketserver.TCPServer(("", PORT), Handler) as httpd:
+        print(f"🚀 Study Companion Development Server")
+        print(f"📍 Server running at: http://localhost:{PORT}")
+        print(f"📁 Serving directory: {os.getcwd()}")
+        print(f"🌐 Opening in browser...")
+        print(f"⏹️  Press Ctrl+C to stop the server")
         
-        # Auto-open browser
-        try:
-            webbrowser.open(f'http://localhost:{PORT}/index.html')
-            print("🌐 Browser opened automatically")
-        except:
-            print("⚠️  Could not open browser automatically")
+        # Open the browser
+        webbrowser.open(f'http://localhost:{PORT}')
         
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:
-            print("\n\n👋 Stopping development server...")
-            print("🎓 Happy studying!")
+            print(f"\n🛑 Server stopped.")
+            sys.exit(0)
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Schedule Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .result { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        button { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 5px; }
+        button:hover { background: #0056b3; }
+        .json-output { background: #f8f9fa; border: 1px solid #e9ecef; padding: 10px; border-radius: 5px; font-family: monospace; white-space: pre-wrap; max-height: 300px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Smart Schedule AI Test</h1>
+        
+        <div class="test-section">
+            <h3>1. Component Availability Test</h3>
+            <button onclick="testComponents()">Check Components</button>
+            <div id="componentResult" class="result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>2. AI Schedule Generation Test</h3>
+            <button onclick="testScheduleGeneration()">Generate Smart Schedule</button>
+            <div id="scheduleResult" class="result"></div>
+            <div id="scheduleOutput" class="json-output"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>3. User Learning Profile Test</h3>
+            <button onclick="testLearningProfile()">Test Learning Profile</button>
+            <div id="profileResult" class="result"></div>
+            <div id="profileOutput" class="json-output"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>4. Biorhythm Analysis Test</h3>
+            <button onclick="testBiorhythm()">Test Biorhythm Analysis</button>
+            <div id="biorhythmResult" class="result"></div>
+            <div id="biorhythmOutput" class="json-output"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>5. Direct Ollama API Test</h3>
+            <button onclick="testOllamaAPI()">Test Ollama Direct</button>
+            <div id="ollamaResult" class="result"></div>
+            <div id="ollamaOutput" class="json-output"></div>
+        </div>
+    </div>
+
+    <script src="assets/js/models/LocalLLMProvider.js"></script>
+    <script src="assets/js/models/AISmartScheduler.js"></script>
+    <script src="assets/js/models/UserLearningProfile.js"></script>
+    <script src="assets/js/models/BiorhythmAnalyzer.js"></script>
+    <script src="assets/js/models/ScheduleOptimizer.js"></script>
+    <script src="assets/js/models/ContextAwareScheduling.js"></script>
+
+    <script>
+        function showResult(elementId, message, type = 'info') {
+            const element = document.getElementById(elementId);
+            element.className = `result ${type}`;
+            element.textContent = message;
+        }
+
+        function showOutput(elementId, data) {
+            const element = document.getElementById(elementId);
+            element.textContent = JSON.stringify(data, null, 2);
+        }
+
+        function testComponents() {
+            console.log('Testing component availability...');
+            
+            const components = {
+                'LocalLLMProvider': typeof LocalLLMProvider !== 'undefined',
+                'AISmartScheduler': typeof AISmartScheduler !== 'undefined',
+                'UserLearningProfile': typeof UserLearningProfile !== 'undefined',
+                'BiorhythmAnalyzer': typeof BiorhythmAnalyzer !== 'undefined',
+                'ScheduleOptimizer': typeof ScheduleOptimizer !== 'undefined',
+                'ContextAwareScheduling': typeof ContextAwareScheduling !== 'undefined'
+            };
+
+            const allAvailable = Object.values(components).every(available => available);
+            const unavailable = Object.entries(components).filter(([name, available]) => !available).map(([name]) => name);
+
+            if (allAvailable) {
+                showResult('componentResult', 'All AI scheduling components are available!', 'success');
+            } else {
+                showResult('componentResult', `Missing components: ${unavailable.join(', ')}`, 'error');
+            }
+
+            console.log('Component availability:', components);
+        }
+
+        async function testScheduleGeneration() {
+            console.log('Testing AI schedule generation...');
+            showResult('scheduleResult', 'Generating AI-powered schedule...', 'info');
+
+            try {
+                const scheduler = new AISmartScheduler();
+                
+                const testData = {
+                    subjects: ['Mathematics', 'Physics', 'Chemistry'],
+                    availableTime: 120, // 2 hours
+                    difficulty: 'medium',
+                    goals: ['exam preparation', 'concept understanding']
+                };
+
+                const schedule = await scheduler.generateOptimizedSchedule(testData);
+                
+                showResult('scheduleResult', 'AI schedule generated successfully!', 'success');
+                showOutput('scheduleOutput', schedule);
+                
+                console.log('Generated schedule:', schedule);
+            } catch (error) {
+                showResult('scheduleResult', `Schedule generation failed: ${error.message}`, 'error');
+                console.error('Schedule generation error:', error);
+            }
+        }
+
+        async function testLearningProfile() {
+            console.log('Testing user learning profile...');
+            showResult('profileResult', 'Analyzing learning profile...', 'info');
+
+            try {
+                const profile = new UserLearningProfile();
+                
+                // Simulate some learning data
+                profile.updatePerformance('Mathematics', 0.85, new Date());
+                profile.updatePerformance('Physics', 0.72, new Date());
+                profile.updateSessionData(45, 'focused'); // 45 min focused session
+
+                const insights = await profile.generateInsights();
+                
+                showResult('profileResult', 'Learning profile analyzed successfully!', 'success');
+                showOutput('profileOutput', insights);
+                
+                console.log('Learning profile insights:', insights);
+            } catch (error) {
+                showResult('profileResult', `Learning profile failed: ${error.message}`, 'error');
+                console.error('Learning profile error:', error);
+            }
+        }
+
+        async function testBiorhythm() {
+            console.log('Testing biorhythm analysis...');
+            showResult('biorhythmResult', 'Analyzing biorhythm patterns...', 'info');
+
+            try {
+                const analyzer = new BiorhythmAnalyzer();
+                const analysis = await analyzer.analyzeOptimalStudyTimes();
+                
+                showResult('biorhythmResult', 'Biorhythm analysis completed!', 'success');
+                showOutput('biorhythmOutput', analysis);
+                
+                console.log('Biorhythm analysis:', analysis);
+            } catch (error) {
+                showResult('biorhythmResult', `Biorhythm analysis failed: ${error.message}`, 'error');
+                console.error('Biorhythm error:', error);
+            }
+        }
+
+        async function testOllamaAPI() {
+            console.log('Testing direct Ollama API...');
+            showResult('ollamaResult', 'Testing Ollama API connection...', 'info');
+
+            try {
+                const response = await fetch('http://localhost:11434/api/generate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        model: 'llama3.2:3b',
+                        prompt: 'Create a brief study schedule for learning JavaScript fundamentals in 2 hours.',
+                        stream: false
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                showResult('ollamaResult', 'Ollama API test successful!', 'success');
+                showOutput('ollamaOutput', {
+                    model: data.model,
+                    response: data.response,
+                    duration: `${(data.total_duration / 1000000000).toFixed(2)}s`
+                });
+                
+                console.log('Ollama API response:', data);
+            } catch (error) {
+                showResult('ollamaResult', `Ollama API test failed: ${error.message}`, 'error');
+                console.error('Ollama API error:', error);
+            }
+        }
+
+        // Auto-run component test on load
+        window.addEventListener('load', () => {
+            setTimeout(testComponents, 500);
+        });
+    </script>
+</body>
+</html>

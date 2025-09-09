@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI API Setup Guide - Studious</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; margin: 40px; background: #f8f9fa; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        h1 { color: #4a6fa5; border-bottom: 3px solid #4a6fa5; padding-bottom: 10px; }
+        h2 { color: #6b8cbc; margin-top: 30px; }
+        .api-provider { background: #f1f3f4; padding: 20px; margin: 20px 0; border-radius: 8px; border-left: 4px solid #4a6fa5; }
+        .step { background: #e8f4f8; padding: 15px; margin: 10px 0; border-radius: 6px; }
+        .warning { background: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; border-radius: 6px; margin: 15px 0; }
+        .code { background: #f8f9fa; padding: 10px; border-radius: 4px; font-family: 'Courier New', monospace; margin: 10px 0; }
+        .button { background: #4a6fa5; color: white; padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; text-decoration: none; display: inline-block; margin: 5px; }
+        .button:hover { background: #3d5a8a; }
+        .highlight { background: #fff3cd; padding: 2px 6px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 AI Flashcard Generator - API Setup Guide</h1>
+        
+        <div class="warning">
+            <strong>⚠️ Important:</strong> You need at least one API key to use AI-powered flashcard generation. All providers offer free tiers to get started!
+        </div>
+
+        <h2>🎯 Quick Start (Recommended)</h2>
+        <div class="step">
+            <strong>1. Choose Your Provider:</strong>
+            <ul>
+                <li><strong>OpenAI</strong> - Best for general content and creative questions</li>
+                <li><strong>Google Gemini</strong> - Excellent for STEM subjects and free tier</li>
+                <li><strong>Anthropic Claude</strong> - Great for complex reasoning and analysis</li>
+            </ul>
+        </div>
+
+        <div class="api-provider">
+            <h2>🟢 Google Gemini (Recommended for Beginners)</h2>
+            <p><strong>Why choose Gemini:</strong> Free tier with generous limits, excellent for students!</p>
+            
+            <div class="step">
+                <strong>Step 1:</strong> Go to <a href="https://aistudio.google.com/" target="_blank" class="button">Google AI Studio</a>
+            </div>
+            
+            <div class="step">
+                <strong>Step 2:</strong> Sign in with your Google account
+            </div>
+            
+            <div class="step">
+                <strong>Step 3:</strong> Click "Get API Key" → "Create API Key" 
+            </div>
+            
+            <div class="step">
+                <strong>Step 4:</strong> Copy your API key (starts with <span class="highlight">AIza...</span>)
+            </div>
+            
+            <div class="step">
+                <strong>Step 5:</strong> In Studious, go to Flashcards → AI Settings → Paste your key in "Google API Key"
+            </div>
+            
+            <div class="code">
+                <strong>Free Limits:</strong> 15 requests per minute, 1,500 requests per day
+            </div>
+        </div>
+
+        <div class="api-provider">
+            <h2>🔵 OpenAI GPT (Most Popular)</h2>
+            <p><strong>Why choose OpenAI:</strong> Most versatile, great for all subjects</p>
+            
+            <div class="step">
+                <strong>Step 1:</strong> Go to <a href="https://platform.openai.com/" target="_blank" class="button">OpenAI Platform</a>
+            </div>
+            
+            <div class="step">
+                <strong>Step 2:</strong> Create account and verify phone number
+            </div>
+            
+            <div class="step">
+                <strong>Step 3:</strong> Go to API Keys → "Create new secret key"
+            </div>
+            
+            <div class="step">
+                <strong>Step 4:</strong> Copy your API key (starts with <span class="highlight">sk-...</span>)
+            </div>
+            
+            <div class="step">
+                <strong>Step 5:</strong> Add $5-10 credit to your account (Pay-as-you-go)
+            </div>
+            
+            <div class="step">
+                <strong>Step 6:</strong> In Studious, paste your key in "OpenAI API Key"
+            </div>
+            
+            <div class="code">
+                <strong>Cost:</strong> ~$0.01-0.03 per flashcard set (very affordable!)
+            </div>
+        </div>
+
+        <div class="api-provider">
+            <h2>🟠 Anthropic Claude (Advanced)</h2>
+            <p><strong>Why choose Claude:</strong> Excellent for complex analysis and detailed explanations</p>
+            
+            <div class="step">
+                <strong>Step 1:</strong> Go to <a href="https://console.anthropic.com/" target="_blank" class="button">Anthropic Console</a>
+            </div>
+            
+            <div class="step">
+                <strong>Step 2:</strong> Create account and request API access
+            </div>
+            
+            <div class="step">
+                <strong>Step 3:</strong> Once approved, create API key
+            </div>
+            
+            <div class="step">
+                <strong>Step 4:</strong> Copy your API key (starts with <span class="highlight">sk-ant-...</span>)
+            </div>
+            
+            <div class="step">
+                <strong>Step 5:</strong> In Studious, paste your key in "Anthropic API Key"
+            </div>
+            
+            <div class="code">
+                <strong>Note:</strong> May require waitlist approval for new users
+            </div>
+        </div>
+
+        <h2>🚀 Using Your AI Flashcards</h2>
+        
+        <div class="step">
+            <strong>1. Load Content:</strong> Upload PDF, enter text, or add video details
+        </div>
+        
+        <div class="step">
+            <strong>2. Generate Cards:</strong> Click "AI Generate" or "Auto Generate"
+        </div>
+        
+        <div class="step">
+            <strong>3. Customize:</strong> Choose subject, difficulty, and card count
+        </div>
+        
+        <div class="step">
+            <strong>4. Study Smart:</strong> Use AI features like hints, explanations, and mnemonics
+        </div>
+
+        <h2>💡 Pro Tips</h2>
+        
+        <ul>
+            <li><strong>Start with Google Gemini</strong> - It's free and excellent for most content</li>
+            <li><strong>STEM subjects:</strong> Google Gemini works best for math, science, engineering</li>
+            <li><strong>Humanities:</strong> OpenAI excels at literature, history, and creative subjects</li>
+            <li><strong>Complex analysis:</strong> Claude is perfect for philosophy, law, and critical thinking</li>
+            <li><strong>Save money:</strong> Use smart settings to optimize API usage</li>
+        </ul>
+
+        <div class="warning">
+            <strong>🔒 Security:</strong> Your API keys are stored locally in your browser and never shared. Each provider uses secure HTTPS connections.
+        </div>
+
+        <h2>❓ Troubleshooting</h2>
+        
+        <div class="step">
+            <strong>Error: "API key not configured"</strong><br>
+            → Make sure you've pasted your API key and clicked "Save API Keys"
+        </div>
+        
+        <div class="step">
+            <strong>Error: "Invalid API key"</strong><br>
+            → Double-check your key is copied correctly (no extra spaces)
+        </div>
+        
+        <div class="step">
+            <strong>Error: "Request failed"</strong><br>
+            → Check your internet connection and API provider status
+        </div>
+        
+        <div class="step">
+            <strong>No flashcards generated</strong><br>
+            → Try shorter content or different AI model
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="../index.html" class="button">🎓 Start Generating AI Flashcards!</a>
+        </div>
+    </div>
+</body>
+</html>

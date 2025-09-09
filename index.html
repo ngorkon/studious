@@ -29,129 +29,272 @@
             </div>
         </header>
 
+        <!-- Navigation -->
+        <nav class="main-navigation">
+            <div class="nav-container">
+                <button class="nav-btn active" data-section="dashboard-section">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-btn" data-section="content-selection">
+                    <i class="fas fa-file-upload"></i>
+                    <span>Content</span>
+                </button>
+                <button class="nav-btn" data-section="timer-section">
+                    <i class="fas fa-clock"></i>
+                    <span>Timer</span>
+                </button>
+                <button class="nav-btn" data-section="flashcards-section">
+                    <i class="fas fa-layer-group"></i>
+                    <span>Flashcards</span>
+                </button>
+                <button class="nav-btn" data-section="config-section">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </button>
+            </div>
+        </nav>
+
         <main>
             <!-- Dashboard Section -->
             <section id="dashboard-section" class="card">
-                <div class="dashboard-header">
-                    <div class="dashboard-title">
-                        <h2 class="card-title">
-                            <i class="fas fa-chart-line"></i>
-                            Study Dashboard
-                        </h2>
-                        <div class="user-level">
-                            <div class="level-badge">
-                                <i class="fas fa-star"></i>
-                                <span id="user-level">Level 5</span>
-                            </div>
-                            <div class="xp-progress">
-                                <div class="xp-bar">
-                                    <div class="xp-fill" id="xp-fill" style="width: 60%"></div>
-                                </div>
-                                <span class="xp-text">
-                                    <span id="current-xp">1200</span> / <span id="next-level-xp">2000</span> XP
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="achievement-showcase" id="recent-achievement">
-                        <!-- Recent achievement will appear here -->
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="fas fa-chart-line"></i>
+                        Study Dashboard
+                    </h2>
+                    <div class="dashboard-controls">
+                        <span id="current-date"></span>
+                        <button class="btn btn-sm btn-outline" id="export-progress">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                        <button class="btn btn-sm btn-primary" id="smart-schedule">
+                            <i class="fas fa-brain"></i> Smart Schedule
+                        </button>
                     </div>
                 </div>
-
+                
                 <div class="stats-container">
-                    <div class="stat-card reward-card">
-                        <div class="stat-icon streak-icon">
-                            <i class="fas fa-fire"></i>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-value" id="study-streak">7</div>
-                            <div class="stat-label">Day Streak</div>
-                            <div class="stat-reward">+50 XP bonus!</div>
-                        </div>
-                    </div>
-
                     <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-book-open"></i>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-value" id="pages-total">0</div>
-                            <div class="stat-label">Pages Read</div>
-                            <div class="stat-progress">
-                                <div class="mini-progress">
-                                    <div class="mini-fill" style="width: 70%"></div>
-                                </div>
-                                <span>23 to next reward</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="stat-card achievement-card">
                         <div class="stat-icon">
                             <i class="fas fa-clock"></i>
                         </div>
                         <div class="stat-content">
-                            <div class="stat-value" id="study-time">0h</div>
-                            <div class="stat-label">Study Time</div>
-                            <div class="stat-achievement">
-                                <i class="fas fa-trophy"></i>
-                                <span>Master Scholar</span>
-                            </div>
+                            <div class="stat-value">4h 23m</div>
+                            <div class="stat-label">Study Time Today</div>
                         </div>
                     </div>
-
-                    <div class="stat-card multiplier-card">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-target"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value">87%</div>
+                            <div class="stat-label">Weekly Goal Progress</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value">12</div>
+                            <div class="stat-label">Documents Studied</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
                         <div class="stat-icon">
                             <i class="fas fa-layer-group"></i>
                         </div>
                         <div class="stat-content">
-                            <div class="stat-value" id="flashcards-total">0</div>
+                            <div class="stat-value">42</div>
                             <div class="stat-label">Flashcards Created</div>
-                            <div class="stat-multiplier">x2 XP Active!</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="quick-actions">
-                    <button class="action-btn primary" id="view-achievements">
-                        <i class="fas fa-trophy"></i>
-                        <span>Achievements</span>
-                        <div class="notification-dot" id="achievement-notification"></div>
-                    </button>
-                    <button class="action-btn" id="view-schedule">
-                        <i class="fas fa-calendar-alt"></i>
-                        <span>Smart Schedule</span>
-                    </button>
-                    <button class="action-btn" id="view-insights">
-                        <i class="fas fa-chart-line"></i>
-                        <span>Study Insights</span>
-                    </button>
-                    <button class="action-btn" id="daily-challenges">
-                        <i class="fas fa-target"></i>
-                        <span>Daily Goals</span>
-                        <div class="progress-ring">
-                            <div class="ring-fill" style="--progress: 75%"></div>
+                <!-- Achievement Section -->
+                <div class="achievements-container">
+                    <div class="achievements-header">
+                        <h3><i class="fas fa-trophy"></i> Recent Achievements</h3>
+                        <button class="btn btn-sm btn-outline" id="view-all-achievements">View All</button>
+                    </div>
+                    <div class="achievements-grid" id="achievements-grid">
+                        <div class="achievement unlocked">
+                            <div class="achievement-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="achievement-info">
+                                <h4>Study Streak</h4>
+                                <p>Studied for 7 days in a row</p>
+                            </div>
                         </div>
-                    </button>
-                    <button class="btn btn-sm btn-outline" id="export-progress">
-                        <i class="fas fa-download"></i> Export
-                    </button>
+                        <div class="achievement unlocked">
+                            <div class="achievement-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="achievement-info">
+                                <h4>Time Master</h4>
+                                <p>Completed 10 pomodoro sessions</p>
+                            </div>
+                        </div>
+                        <div class="achievement locked">
+                            <div class="achievement-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="achievement-info">
+                                <h4>Knowledge Expert</h4>
+                                <p>Study 100 documents</p>
+                                <small>Progress: 12/100</small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="progress-container">
                     <div class="progress-header">
-                        <span>Today's Progress</span>
+                        <span>Current session progress</span>
                         <span class="progress-percentage">65%</span>
                     </div>
                     <div class="progress-bar">
                         <div class="progress-fill" style="width: 65%"></div>
                     </div>
                 </div>
+
+                <!-- Smart Recommendations -->
+                <div class="recommendations-container">
+                    <div class="recommendations-header">
+                        <h3><i class="fas fa-lightbulb"></i> Smart Recommendations</h3>
+                    </div>
+                    <div class="recommendation-cards" id="recommendation-cards">
+                        <div class="recommendation-card">
+                            <div class="recommendation-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="recommendation-content">
+                                <h4>Perfect Study Time</h4>
+                                <p>Based on your habits, 2:00 PM is your most productive time</p>
+                            </div>
+                        </div>
+                        <div class="recommendation-card">
+                            <div class="recommendation-icon">
+                                <i class="fas fa-coffee"></i>
+                            </div>
+                            <div class="recommendation-content">
+                                <h4>Break Reminder</h4>
+                                <p>You've been studying for 45 minutes. Consider a 10-minute break</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Smart Schedule Section -->
+            <section id="smart-schedule-section" class="card hidden">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="fas fa-brain"></i>
+                        Smart Schedule
+                    </h2>
+                    <div class="schedule-controls">
+                        <button class="btn btn-sm btn-outline" id="generate-schedule">
+                            <i class="fas fa-magic"></i> Generate Schedule
+                        </button>
+                        <button class="btn btn-sm btn-outline" id="close-schedule">
+                            <i class="fas fa-times"></i> Close
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="schedule-container">
+                    <div class="schedule-options">
+                        <h3>Schedule Preferences</h3>
+                        <div class="form-group">
+                            <label for="study-duration">Daily Study Duration</label>
+                            <select id="study-duration">
+                                <option value="30">30 minutes</option>
+                                <option value="60" selected>1 hour</option>
+                                <option value="90">1.5 hours</option>
+                                <option value="120">2 hours</option>
+                                <option value="180">3 hours</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="preferred-times">Preferred Study Times</label>
+                            <div class="time-slots">
+                                <label class="time-slot">
+                                    <input type="checkbox" value="morning" checked>
+                                    <span>Morning (6-12)</span>
+                                </label>
+                                <label class="time-slot">
+                                    <input type="checkbox" value="afternoon">
+                                    <span>Afternoon (12-18)</span>
+                                </label>
+                                <label class="time-slot">
+                                    <input type="checkbox" value="evening">
+                                    <span>Evening (18-24)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="generated-schedule" id="generated-schedule">
+                        <h3>Your Optimized Schedule</h3>
+                        <div class="schedule-timeline">
+                            <div class="schedule-day">
+                                <h4>Today</h4>
+                                <div class="schedule-items">
+                                    <div class="schedule-item">
+                                        <span class="time">9:00 AM</span>
+                                        <span class="activity">Study Session 1 - Mathematics</span>
+                                        <span class="duration">25 min</span>
+                                    </div>
+                                    <div class="schedule-item">
+                                        <span class="time">9:30 AM</span>
+                                        <span class="activity">Break</span>
+                                        <span class="duration">5 min</span>
+                                    </div>
+                                    <div class="schedule-item">
+                                        <span class="time">9:35 AM</span>
+                                        <span class="activity">Study Session 2 - Physics</span>
+                                        <span class="duration">25 min</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Achievements Modal Section -->
+            <section id="achievements-modal-section" class="card hidden">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="fas fa-trophy"></i>
+                        Achievements & Badges
+                    </h2>
+                    <button class="btn btn-sm btn-outline" id="close-achievements">
+                        <i class="fas fa-times"></i> Close
+                    </button>
+                </div>
+                
+                <div class="achievements-full-container">
+                    <div class="achievement-categories">
+                        <button class="category-btn active" data-category="all">All</button>
+                        <button class="category-btn" data-category="study">Study</button>
+                        <button class="category-btn" data-category="time">Time</button>
+                        <button class="category-btn" data-category="streak">Streak</button>
+                        <button class="category-btn" data-category="special">Special</button>
+                    </div>
+                    
+                    <div class="achievements-full-grid" id="achievements-full-grid">
+                        <!-- Achievements will be populated here -->
+                    </div>
+                </div>
             </section>
 
             <!-- Content Selection Section -->
-            <section id="content-selection" class="card">
+            <section id="content-selection" class="card hidden">
                 <div class="card-header">
                     <h2 class="card-title">
                         <i class="fas fa-plus-circle"></i>
@@ -211,199 +354,77 @@
             </section>
 
             <!-- PDF Upload Section -->
-            <section id="upload-section" class="card">
-                <!-- Workflow Progress -->
-                <div class="workflow-header">
-                    <div class="workflow-steps">
-                        <div class="step active" id="step-upload">
-                            <span class="step-number">1</span>
-                            <span class="step-label">Upload</span>
-                        </div>
-                        <div class="step" id="step-configure">
-                            <span class="step-number">2</span>
-                            <span class="step-label">Configure</span>
-                        </div>
-                        <div class="step" id="step-study">
-                            <span class="step-number">3</span>
-                            <span class="step-label">Study</span>
+            <section id="upload-section" class="card hidden">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="fas fa-upload"></i>
+                        Upload Study Material
+                    </h2>
+                </div>
+                
+                <div class="upload-area" id="drop-area">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>Drop your PDF here</h3>
+                    <p>or click to browse files</p>
+                    <input type="file" id="file-input" accept=".pdf" style="display: none;">
+                    <button class="btn btn-primary" id="browse-btn">
+                        <i class="fas fa-search"></i> Browse Files
+                    </button>
+                    <div class="upload-info">
+                        <small>Supported formats: PDF • Max size: 50MB</small>
+                    </div>
+                </div>
+                
+                <div id="file-info" class="hidden file-preview">
+                    <div class="file-details">
+                        <i class="fas fa-file-pdf file-icon"></i>
+                        <div class="file-meta">
+                            <span class="file-name"></span>
+                            <span class="file-size"></span>
                         </div>
                     </div>
-                    <button class="btn btn-sm btn-outline" id="back-to-main-pdf">
-                        <i class="fas fa-arrow-left"></i> Back to Main
+                    <button class="btn btn-sm btn-danger" id="remove-file">
+                        <i class="fas fa-times"></i>
                     </button>
                 </div>
-
-                <!-- Step 1: Upload Content -->
-                <div class="workflow-step-content" id="upload-step-content">
-                    <div class="card-header">
-                        <h2 class="card-title">
-                            <i class="fas fa-upload"></i>
-                            Upload Your PDF
-                        </h2>
+                
+                <div class="tabs">
+                    <div class="tab active" data-tab="recent">
+                        <i class="fas fa-history"></i>
+                        Recent Documents
                     </div>
-                    
-                    <div class="upload-area" id="drop-area">
-                        <div class="upload-icon">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                        </div>
-                        <h3>Drop your PDF here</h3>
-                        <p>or click to browse files</p>
-                        <input type="file" id="file-input" accept=".pdf" style="display: none;">
-                        <button class="btn btn-primary" id="browse-btn">
-                            <i class="fas fa-search"></i> Browse Files
-                        </button>
-                        <div class="upload-info">
-                            <small>Supported formats: PDF • Max size: 50MB</small>
-                        </div>
+                    <div class="tab" data-tab="favorites">
+                        <i class="fas fa-heart"></i>
+                        Favorites
                     </div>
-                    
-                    <div id="file-info" class="hidden file-preview">
-                        <div class="file-details">
-                            <i class="fas fa-file-pdf file-icon"></i>
-                            <div class="file-meta">
-                                <span class="file-name"></span>
-                                <span class="file-size"></span>
-                            </div>
-                        </div>
-                        <button class="btn btn-sm btn-danger" id="remove-file">
-                            <i class="fas fa-times"></i>
-                        </button>
+                    <div class="tab" data-tab="cloud">
+                        <i class="fas fa-cloud"></i>
+                        Cloud Storage
                     </div>
-
-                    <div class="workflow-actions">
-                        <button class="btn btn-primary btn-lg" id="proceed-to-config" disabled>
-                            Next: Configure Study <i class="fas fa-arrow-right"></i>
-                        </button>
+                </div>
+                
+                <div class="tab-content active" id="recent-tab">
+                    <div class="empty-state">
+                        <i class="fas fa-inbox"></i>
+                        <p>No recent documents. Upload a PDF to get started.</p>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="favorites-tab">
+                    <div class="empty-state">
+                        <i class="fas fa-heart"></i>
+                        <p>No favorite documents yet.</p>
                     </div>
                 </div>
 
-                <!-- Step 2: Configuration -->
-                <div class="workflow-step-content hidden" id="config-step-content">
-                    <div class="card-header">
-                        <h2 class="card-title">
-                            <i class="fas fa-cog"></i>
-                            Study Configuration
-                        </h2>
-                    </div>
-
-                    <div class="config-simple">
-                        <div class="config-grid">
-                            <!-- Left Column -->
-                            <div class="config-column">
-                                <div class="form-group">
-                                    <label>
-                                        <i class="fas fa-file-alt"></i>
-                                        Study Pages
-                                    </label>
-                                    <div class="page-range">
-                                        <input type="number" id="start-page" placeholder="From" min="1" value="1">
-                                        <span>to</span>
-                                        <input type="number" id="end-page" placeholder="To" min="1">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>
-                                        <i class="fas fa-th"></i>
-                                        Study Chunks
-                                    </label>
-                                    <input type="range" id="chunk-count" min="1" max="10" value="4">
-                                    <div class="range-display">
-                                        <span id="chunk-value">4 chunks</span>
-                                        <small>Each chunk ≈ <span id="pages-per-chunk">0</span> pages</small>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>
-                                        <i class="fas fa-clock"></i>
-                                        Study Timer
-                                    </label>
-                                    <div class="timer-presets">
-                                        <button type="button" class="preset-btn active" data-minutes="25">
-                                            <i class="fas fa-tomato"></i> 25min
-                                        </button>
-                                        <button type="button" class="preset-btn" data-minutes="45">
-                                            <i class="fas fa-clock"></i> 45min
-                                        </button>
-                                        <button type="button" class="preset-btn" data-minutes="60">
-                                            <i class="fas fa-hourglass"></i> 60min
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Right Column -->
-                            <div class="config-column">
-                                <div class="form-group">
-                                    <label>
-                                        <i class="fas fa-brain"></i>
-                                        Study Mode
-                                    </label>
-                                    <select id="study-mode">
-                                        <option value="focus">Focus Reading</option>
-                                        <option value="review">Review & Annotate</option>
-                                        <option value="test">Create Flashcards</option>
-                                        <option value="speed">Speed Reading</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>
-                                        <i class="fas fa-palette"></i>
-                                        Reading Theme
-                                    </label>
-                                    <div class="theme-options">
-                                        <button type="button" class="theme-btn active" data-theme="light">
-                                            <i class="fas fa-sun"></i> Light
-                                        </button>
-                                        <button type="button" class="theme-btn" data-theme="dark">
-                                            <i class="fas fa-moon"></i> Dark
-                                        </button>
-                                        <button type="button" class="theme-btn" data-theme="sepia">
-                                            <i class="fas fa-leaf"></i> Sepia
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>
-                                        <i class="fas fa-bell"></i>
-                                        Notifications
-                                    </label>
-                                    <div class="notification-toggles">
-                                        <label class="toggle-switch">
-                                            <input type="checkbox" id="break-reminders" checked>
-                                            <span class="slider"></span>
-                                            Break reminders
-                                        </label>
-                                        <label class="toggle-switch">
-                                            <input type="checkbox" id="progress-notifications" checked>
-                                            <span class="slider"></span>
-                                            Progress updates
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="study-goal-section">
-                            <div class="form-group">
-                                <label>
-                                    <i class="fas fa-bullseye"></i>
-                                    Study Goal (Optional)
-                                </label>
-                                <input type="text" id="study-goal" placeholder="What do you want to achieve in this session?">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="workflow-actions">
-                        <button class="btn btn-outline" id="back-to-upload">
-                            <i class="fas fa-arrow-left"></i> Back
-                        </button>
-                        <button class="btn btn-success btn-lg" id="start-study">
-                            Start Studying <i class="fas fa-play"></i>
+                <div class="tab-content" id="cloud-tab">
+                    <div class="empty-state">
+                        <i class="fas fa-cloud"></i>
+                        <p>Connect your cloud storage to access files.</p>
+                        <button class="btn btn-outline">
+                            <i class="fab fa-google-drive"></i> Connect Google Drive
                         </button>
                     </div>
                 </div>
@@ -416,9 +437,6 @@
                         <i class="fas fa-video"></i>
                         Study Video Content
                     </h2>
-                    <button class="btn btn-sm btn-outline" id="back-to-main-video">
-                        <i class="fas fa-arrow-left"></i> Back to Main
-                    </button>
                 </div>
                 
                 <div class="video-input-container">
@@ -469,9 +487,6 @@
                         <i class="fas fa-align-left"></i>
                         Study Text Content
                     </h2>
-                    <button class="btn btn-sm btn-outline" id="back-to-main-text">
-                        <i class="fas fa-arrow-left"></i> Back to Main
-                    </button>
                 </div>
                 
                 <div class="text-input-container">
@@ -502,116 +517,409 @@
                 </button>
             </section>
 
+            <!-- Configuration Section -->
+            <section id="config-section" class="card hidden">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="fas fa-cog"></i>
+                        Study Configuration
+                    </h2>
+                    <div class="config-actions">
+                        <button class="btn btn-sm btn-outline" id="load-preset">
+                            <i class="fas fa-folder-open"></i> Load Preset
+                        </button>
+                        <button class="btn btn-sm btn-outline" id="save-preset">
+                            <i class="fas fa-save"></i> Save Preset
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="config-container">
+                    <div class="config-sidebar">
+                        <div class="config-nav">
+                            <button class="config-nav-btn active" data-config="general">
+                                <i class="fas fa-sliders-h"></i>
+                                General
+                            </button>
+                            <button class="config-nav-btn" data-config="chunks">
+                                <i class="fas fa-th-large"></i>
+                                Chunking
+                            </button>
+                            <button class="config-nav-btn" data-config="timer">
+                                <i class="fas fa-clock"></i>
+                                Timer
+                            </button>
+                            <button class="config-nav-btn" data-config="advanced">
+                                <i class="fas fa-cogs"></i>
+                                Advanced
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="config-content">
+                        <!-- General Configuration -->
+                        <div class="config-panel active" id="general-config">
+                            <div class="form-group">
+                                <label for="study-goal">
+                                    <i class="fas fa-bullseye"></i>
+                                    Study Goal
+                                </label>
+                                <input type="text" id="study-goal" placeholder="What do you want to achieve in this session?">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="study-mode">
+                                    <i class="fas fa-brain"></i>
+                                    Study Mode
+                                </label>
+                                <select id="study-mode">
+                                    <option value="focus">Focus Mode (No distractions)</option>
+                                    <option value="review">Review Mode (With annotations)</option>
+                                    <option value="test">Test Yourself (With flashcards)</option>
+                                    <option value="speed">Speed Reading</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="difficulty-level">
+                                    <i class="fas fa-signal"></i>
+                                    Difficulty Level
+                                </label>
+                                <div class="difficulty-selector">
+                                    <input type="radio" id="easy" name="difficulty" value="easy" checked>
+                                    <label for="easy">Easy</label>
+                                    <input type="radio" id="medium" name="difficulty" value="medium">
+                                    <label for="medium">Medium</label>
+                                    <input type="radio" id="hard" name="difficulty" value="hard">
+                                    <label for="hard">Hard</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Chunking Configuration -->
+                        <div class="config-panel" id="chunks-config">
+                            <div id="pdf-config">
+                                <div class="form-group">
+                                    <label>
+                                        <i class="fas fa-file-alt"></i>
+                                        Page Range
+                                    </label>
+                                    <div class="range-inputs">
+                                        <div class="range-input">
+                                            <label for="start-page">From</label>
+                                            <input type="number" id="start-page" min="1" value="1">
+                                        </div>
+                                        <div class="range-input">
+                                            <label for="end-page">To</label>
+                                            <input type="number" id="end-page" min="1">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="chunk-count">
+                                        <i class="fas fa-th"></i>
+                                        Number of Study Chunks
+                                    </label>
+                                    <div class="slider-group">
+                                        <input type="range" id="chunk-count" min="1" max="20" value="4">
+                                        <div class="slider-display">
+                                            <span id="chunk-value">4 chunks</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="chunk-preview">
+                                        <i class="fas fa-info-circle"></i>
+                                        Each chunk will contain approximately <strong id="pages-per-chunk">0</strong> pages
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="video-config" class="hidden">
+                                <div class="form-group">
+                                    <label for="video-chunk-mode">
+                                        <i class="fas fa-scissors"></i>
+                                        Chunking Method
+                                    </label>
+                                    <select id="video-chunk-mode">
+                                        <option value="equal">Equal Time Chunks</option>
+                                        <option value="content">Content-Based Chunks</option>
+                                        <option value="manual">Manual Timestamps</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group" id="equal-chunk-config">
+                                    <label for="video-chunk-count">
+                                        <i class="fas fa-th"></i>
+                                        Number of Video Chunks
+                                    </label>
+                                    <div class="slider-group">
+                                        <input type="range" id="video-chunk-count" min="1" max="20" value="5">
+                                        <div class="slider-display">
+                                            <span id="video-chunk-value">5 chunks</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group hidden" id="manual-chunk-config">
+                                    <label for="chunk-timestamps">
+                                        <i class="fas fa-clock"></i>
+                                        Chunk Timestamps (MM:SS format, one per line)
+                                    </label>
+                                    <textarea id="chunk-timestamps" placeholder="00:05&#10;00:12&#10;00:18&#10;00:25"></textarea>
+                                </div>
+                                
+                                <div class="chunk-preview">
+                                    <i class="fas fa-info-circle"></i>
+                                    Each video chunk will be approximately <strong id="chunk-duration">0</strong> minutes long
+                                </div>
+                                
+                                <div class="suggestion-container">
+                                    <div class="suggestion-header">
+                                        <h4>
+                                            <i class="fas fa-lightbulb"></i>
+                                            Suggested Chunking Options
+                                        </h4>
+                                    </div>
+                                    <p>Based on your video duration, we recommend these chunking options:</p>
+                                    <div class="suggestion-options" id="chunk-suggestions">
+                                        <!-- Suggestions will be added here -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="text-config" class="hidden">
+                                <div class="form-group">
+                                    <label for="text-chunk-mode">
+                                        <i class="fas fa-scissors"></i>
+                                        Text Chunking Method
+                                    </label>
+                                    <select id="text-chunk-mode">
+                                        <option value="paragraph">By Paragraphs</option>
+                                        <option value="sentence">By Sentences</option>
+                                        <option value="word-count">By Word Count</option>
+                                        <option value="time-based">Time-Based Reading</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="reading-speed">
+                                        <i class="fas fa-tachometer-alt"></i>
+                                        Reading Speed (WPM)
+                                    </label>
+                                    <div class="slider-group">
+                                        <input type="range" id="reading-speed" min="100" max="800" value="250">
+                                        <div class="slider-display">
+                                            <span id="reading-speed-value">250 WPM</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Timer Configuration -->
+                        <div class="config-panel" id="timer-config">
+                            <div class="timer-container">
+                                <h3>
+                                    <i class="fas fa-stopwatch"></i>
+                                    Study Timer
+                                </h3>
+                                <div class="timer-display" id="timer">25:00</div>
+                                <div class="timer-controls">
+                                    <button class="btn btn-sm timer-preset active" id="pomodoro-btn">
+                                        <i class="fas fa-tomato"></i>
+                                        Pomodoro (25m)
+                                    </button>
+                                    <button class="btn btn-sm timer-preset" id="short-break-btn">
+                                        <i class="fas fa-coffee"></i>
+                                        Short Break (5m)
+                                    </button>
+                                    <button class="btn btn-sm timer-preset" id="long-break-btn">
+                                        <i class="fas fa-bed"></i>
+                                        Long Break (15m)
+                                    </button>
+                                </div>
+                                
+                                <div class="custom-timer">
+                                    <label>Custom Timer</label>
+                                    <div class="timer-inputs">
+                                        <input type="number" id="custom-minutes" placeholder="Min" min="1" max="180">
+                                        <span>:</span>
+                                        <input type="number" id="custom-seconds" placeholder="Sec" min="0" max="59">
+                                        <button class="btn btn-sm" id="set-custom-timer">Set</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Advanced Configuration -->
+                        <div class="config-panel" id="advanced-config">
+                            <div class="form-group">
+                                <label>
+                                    <i class="fas fa-palette"></i>
+                                    Theme
+                                </label>
+                                <div class="theme-selector">
+                                    <button class="theme-option active" data-theme="light">
+                                        <i class="fas fa-sun"></i>
+                                        Light
+                                    </button>
+                                    <button class="theme-option" data-theme="dark">
+                                        <i class="fas fa-moon"></i>
+                                        Dark
+                                    </button>
+                                    <button class="theme-option" data-theme="sepia">
+                                        <i class="fas fa-leaf"></i>
+                                        Sepia
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>
+                                    <i class="fas fa-bell"></i>
+                                    Notifications
+                                </label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="break-reminders" checked>
+                                    <label for="break-reminders">Break reminders</label>
+                                </div>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="progress-notifications" checked>
+                                    <label for="progress-notifications">Progress notifications</label>
+                                </div>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="goal-reminders">
+                                    <label for="goal-reminders">Goal reminders</label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>
+                                    <i class="fas fa-music"></i>
+                                    Focus Sounds
+                                </label>
+                                <select id="focus-sounds">
+                                    <option value="none">None</option>
+                                    <option value="rain">Rain</option>
+                                    <option value="forest">Forest</option>
+                                    <option value="ocean">Ocean Waves</option>
+                                    <option value="white-noise">White Noise</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="config-footer">
+                    <button class="btn btn-success btn-lg" id="generate-chunks">
+                        <i class="fas fa-play"></i> Start Studying
+                    </button>
+                </div>
+            </section>
+
             <!-- PDF Viewer Section -->
             <section id="viewer-section" class="card hidden">
                 <div class="card-header">
                     <h2 class="card-title" id="viewer-title">
                         <i class="fas fa-file-pdf"></i>
-                        PDF Study Session
+                        PDF Preview
                     </h2>
                     <div class="viewer-controls">
-                        <div class="study-timer" id="study-timer">
-                            <span class="timer-display">25:00</span>
-                            <button class="btn btn-sm timer-btn" id="timer-toggle">
-                                <i class="fas fa-play"></i>
-                            </button>
-                        </div>
-                        <div class="control-group">
-                            <button class="btn btn-sm" id="toggle-view-mode" title="Toggle view mode">
-                                <i class="fas fa-th-large"></i> Chunks
-                            </button>
-                            <button class="btn btn-sm btn-outline" id="add-bookmark">
-                                <i class="fas fa-bookmark"></i> Bookmark
-                            </button>
-                            <button class="btn btn-sm btn-success" id="create-flashcards">
-                                <i class="fas fa-layer-group"></i> Flashcards
-                            </button>
-                            <button class="btn btn-sm btn-outline" id="fullscreen-btn">
-                                <i class="fas fa-expand"></i> Fullscreen
-                            </button>
-                        </div>
+                        <button class="btn btn-sm btn-outline" id="add-bookmark">
+                            <i class="fas fa-bookmark"></i> Bookmark
+                        </button>
+                        <button class="btn btn-sm" id="show-annotations">
+                            <i class="fas fa-highlighter"></i> Annotations
+                        </button>
+                        <button class="btn btn-sm btn-outline" id="fullscreen-btn">
+                            <i class="fas fa-expand"></i> Fullscreen
+                        </button>
                     </div>
                 </div>
                 
-                <!-- Navigation Controls -->
+                <div class="annotation-tools hidden" id="annotation-tools">
+                    <div class="annotation-tool active">
+                        <i class="fas fa-mouse-pointer"></i> Select
+                    </div>
+                    <div class="annotation-tool">
+                        <i class="fas fa-highlighter"></i> Highlight
+                    </div>
+                    <div class="annotation-tool">
+                        <i class="fas fa-pen"></i> Draw
+                    </div>
+                    <div class="annotation-tool">
+                        <i class="fas fa-sticky-note"></i> Note
+                    </div>
+                    <div class="annotation-tool">
+                        <i class="fas fa-eraser"></i> Erase
+                    </div>
+                </div>
+                
                 <div class="viewer-toolbar">
-                    <div class="toolbar-section">
-                        <div class="zoom-controls">
-                            <button class="zoom-btn" id="zoom-out">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                            <span id="zoom-level">100%</span>
-                            <button class="zoom-btn" id="zoom-in">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                        </div>
-                        
-                        <div class="page-controls">
-                            <button class="btn btn-sm" id="prev-page">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <span id="page-info">Page 1 of 10</span>
-                            <button class="btn btn-sm" id="next-page">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                        </div>
+                    <div class="zoom-controls">
+                        <button class="zoom-btn" id="zoom-out">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <span id="zoom-level">100%</span>
+                        <button class="zoom-btn" id="zoom-in">
+                            <i class="fas fa-plus"></i>
+                        </button>
                     </div>
                     
-                    <div class="toolbar-section">
-                        <div class="chunk-controls">
-                            <button class="btn btn-outline" id="prev-chunk">
-                                <i class="fas fa-arrow-left"></i> Previous
-                            </button>
-                            <span id="chunk-info">Chunk 1 of 4</span>
-                            <button class="btn btn-outline" id="next-chunk">
-                                Next <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                        
-                        <div class="study-actions">
-                            <button class="btn btn-warning btn-sm" id="take-break">
-                                <i class="fas fa-coffee"></i> Break
-                            </button>
-                            <button class="btn btn-info btn-sm" id="focus-mode">
-                                <i class="fas fa-eye"></i> Focus
-                            </button>
-                        </div>
+                    <div class="page-controls">
+                        <button class="btn btn-sm" id="prev-page">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <span id="page-info">Page 1 of 10</span>
+                        <button class="btn btn-sm" id="next-page">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
                     </div>
                 </div>
                 
-                <!-- PDF Viewer -->
                 <div class="pdf-container">
                     <div class="pdf-viewer" id="pdf-viewer">
                         <!-- PDF pages will be rendered here -->
                     </div>
                 </div>
                 
-                <!-- Progress and Stats -->
-                <div class="study-stats">
-                    <div class="progress-container">
-                        <div class="progress-header">
-                            <span>Study Progress</span>
-                            <span class="progress-percentage" id="chunk-progress-text">0%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="chunk-progress" style="width: 0%"></div>
-                        </div>
+                <div class="progress-container">
+                    <div class="progress-header">
+                        <span>Chunk Progress</span>
+                        <span class="progress-percentage" id="chunk-progress-text">0%</span>
                     </div>
-                    
-                    <div class="session-stats">
-                        <div class="stat-item">
-                            <i class="fas fa-book-open"></i>
-                            <span>Pages Read: <strong id="pages-read">0</strong></span>
-                        </div>
-                        <div class="stat-item">
-                            <i class="fas fa-clock"></i>
-                            <span>Time Spent: <strong id="time-spent">0:00</strong></span>
-                        </div>
-                        <div class="stat-item">
-                            <i class="fas fa-layer-group"></i>
-                            <span>Flashcards: <strong id="flashcard-count">0</strong></span>
-                        </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="chunk-progress" style="width: 0%"></div>
                     </div>
+                </div>
+                
+                <div class="chunk-navigation" id="chunk-navigation">
+                    <!-- Chunk buttons will be generated here -->
+                </div>
+                
+                <div class="viewer-actions">
+                    <button class="btn btn-outline" id="prev-chunk">
+                        <i class="fas fa-arrow-left"></i> Previous Chunk
+                    </button>
+                    <div class="chunk-info">
+                        <span id="chunk-info">Chunk 1 of 4</span>
+                    </div>
+                    <button class="btn btn-outline" id="next-chunk">
+                        Next Chunk <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <div class="study-actions">
+                    <button class="btn btn-warning" id="take-break">
+                        <i class="fas fa-coffee"></i> Take a Break
+                    </button>
+                    <button class="btn btn-success" id="start-reading">
+                        <i class="fas fa-eye"></i> Focus Mode
+                    </button>
+                    <button class="btn btn-primary" id="create-flashcards">
+                        <i class="fas fa-layer-group"></i> Create Flashcards
+                    </button>
                 </div>
             </section>
 
@@ -808,7 +1116,71 @@
                     </div>
                 </div>
             </section>
-            
+
+            <!-- Timer Section -->
+            <section id="timer-section" class="card hidden">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="fas fa-clock"></i>
+                        Study Timer
+                    </h2>
+                    <div class="timer-mode-selector">
+                        <button class="btn btn-sm btn-outline" id="pomodoro-btn">
+                            <i class="fas fa-clock"></i> Pomodoro
+                        </button>
+                        <button class="btn btn-sm btn-outline" id="short-break-btn">
+                            <i class="fas fa-coffee"></i> Short Break
+                        </button>
+                        <button class="btn btn-sm btn-outline" id="long-break-btn">
+                            <i class="fas fa-bed"></i> Long Break
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="timer-container">
+                    <div class="timer-display" id="timer-display">25:00</div>
+                    <div class="timer-controls">
+                        <button class="btn btn-success" id="start-timer">
+                            <i class="fas fa-play"></i> Start
+                        </button>
+                        <button class="btn btn-warning" id="pause-timer">
+                            <i class="fas fa-pause"></i> Pause
+                        </button>
+                        <button class="btn btn-secondary" id="reset-timer">
+                            <i class="fas fa-stop"></i> Reset
+                        </button>
+                    </div>
+                    
+                    <div class="custom-timer">
+                        <h3>Custom Timer</h3>
+                        <div class="custom-inputs">
+                            <div class="input-group">
+                                <label for="custom-minutes">Minutes</label>
+                                <input type="number" id="custom-minutes" min="0" max="60" value="25">
+                            </div>
+                            <div class="input-group">
+                                <label for="custom-seconds">Seconds</label>
+                                <input type="number" id="custom-seconds" min="0" max="59" value="0">
+                            </div>
+                            <button class="btn btn-primary" id="set-custom-timer">
+                                <i class="fas fa-check"></i> Set Timer
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="timer-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Sessions Today:</span>
+                            <span class="stat-value" id="sessions-today">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Total Time:</span>
+                            <span class="stat-value" id="total-time-today">0h 0m</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Flashcards Section -->
             <section id="flashcards-section" class="card hidden">
                 <div class="card-header">
@@ -911,6 +1283,45 @@
         </footer>
     </div>
 
-    <script src="assets/js/app.js"></script>
+    <script src="assets/js/models/Utils.js"></script>
+    <script src="assets/js/models/Store.js"></script>
+    <script src="assets/js/models/AnalyticsModel.js"></script>
+    <script src="assets/js/models/ContentModel.js"></script>
+    <script src="assets/js/models/FlashcardModel.js"></script>
+    <script src="assets/js/models/QuoteModel.js"></script>
+    <script src="assets/js/models/RewardSystem.js"></script>
+    <script src="assets/js/models/TimerModel.js"></script>
+    <script src="assets/js/views/ContentView.js"></script>
+    <script src="assets/js/views/DashboardView.js"></script>
+    <script src="assets/js/views/FlashcardView.js"></script>
+    <script src="assets/js/views/ModalView.js"></script>
+    <script src="assets/js/views/ThemeView.js"></script>
+    <script src="assets/js/views/TimerView.js"></script>
+    <script src="assets/js/views/ToastView.js"></script>
+    <script src="assets/js/controllers/ContentController.js"></script>
+    <script src="assets/js/controllers/FlashcardController.js"></script>
+    <script src="assets/js/controllers/TimerController.js"></script>
+    <script src="assets/js/models/ConfigModel.js"></script>
+    <script src="assets/js/views/ConfigView.js"></script>
+    <script src="assets/js/controllers/ConfigController.js"></script>
+    <script src="assets/js/views/ViewerView.js"></script>
+    <script src="assets/js/controllers/ViewerController.js"></script>
+    <script src="assets/js/views/ReaderView.js"></script>
+    <script src="assets/js/controllers/ReaderController.js"></script>
+    <script src="assets/js/controllers/AchievementController.js"></script>
+    <script src="assets/js/controllers/NavigationController.js"></script>
+    <script src="assets/js/models/EnvironmentConfig.js"></script>
+    <script src="assets/js/models/LocalLLMProvider.js"></script>
+    <script src="assets/js/models/AIFlashcardGenerator.js"></script>
+    
+    <!-- AI Smart Scheduling System -->
+    <script src="assets/js/models/UserLearningProfile.js"></script>
+    <script src="assets/js/models/BiorhythmAnalyzer.js"></script>
+    <script src="assets/js/models/ScheduleOptimizer.js"></script>
+    <script src="assets/js/models/ContextAwareScheduling.js"></script>
+    <script src="assets/js/models/AISmartScheduler.js"></script>
+    <script src="assets/js/controllers/SmartScheduleController.js"></script>
+    
+    <script src="assets/js/controllers/AppController.js"></script>
 </body>
 </html>

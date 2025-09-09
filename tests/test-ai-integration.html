@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Integration Test - Studious</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        .warning { background: #fff3cd; color: #856404; border: 1px solid #ffeaa7; }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+        button:hover { background: #0056b3; }
+        button:disabled { background: #6c757d; cursor: not-allowed; }
+        .result {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 10px 0;
+            white-space: pre-wrap;
+            font-family: monospace;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 AI Integration Test Suite</h1>
+        <p>Testing the Local LLM Provider and AI Smart Scheduling system</p>
+
+        <div class="test-section">
+            <h3>🔍 1. LLM Provider Detection</h3>
+            <button onclick="testProviderDetection()">Test Provider Detection</button>
+            <div id="provider-status"></div>
+            <div id="provider-result" class="result" style="display: none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>🤖 2. AI Flashcard Generation</h3>
+            <button onclick="testFlashcardGeneration()">Generate Test Flashcards</button>
+            <div id="flashcard-status"></div>
+            <div id="flashcard-result" class="result" style="display: none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>📅 3. AI Schedule Generation</h3>
+            <button onclick="testScheduleGeneration()">Generate Test Schedule</button>
+            <div id="schedule-status"></div>
+            <div id="schedule-result" class="result" style="display: none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>🎯 4. Smart Schedule Controller</h3>
+            <button onclick="testSmartScheduleController()">Test Schedule Controller</button>
+            <div id="controller-status"></div>
+            <div id="controller-result" class="result" style="display: none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>🛠️ 5. Direct Ollama API Test</h3>
+            <button onclick="testDirectOllamaAPI()">Test Direct API Call</button>
+            <div id="ollama-status"></div>
+            <div id="ollama-result" class="result" style="display: none;"></div>
+        </div>
+    </div>
+
+    <!-- Load the AI modules -->
+    <script src="assets/js/models/LocalLLMProvider.js"></script>
+    <script src="assets/js/models/AIFlashcardGenerator.js"></script>
+    <script src="assets/js/models/UserLearningProfile.js"></script>
+    <script src="assets/js/models/BiorhythmAnalyzer.js"></script>
+    <script src="assets/js/models/ScheduleOptimizer.js"></script>
+    <script src="assets/js/models/ContextAwareScheduling.js"></script>
+    <script src="assets/js/models/AISmartScheduler.js"></script>
+    <script src="assets/js/controllers/SmartScheduleController.js"></script>
+
+    <script>
+        // Test Functions
+        async function testProviderDetection() {
+            const statusDiv = document.getElementById('provider-status');
+            const resultDiv = document.getElementById('provider-result');
+            
+            statusDiv.innerHTML = '<div class="info"><span class="loading"></span> Testing LLM Provider Detection...</div>';
+            resultDiv.style.display = 'none';
+            
+            try {
+                const provider = new LocalLLMProvider();
+                await provider.detectAvailableProviders();
+                
+                const result = {
+                    isAvailable: provider.isAvailable,
+                    activeProvider: provider.activeProvider,
+                    activeModel: provider.activeModel,
+                    availableProviders: Object.keys(provider.providers).filter(p => 
+                        provider.providers[p].detected
+                    )
+                };
+                
+                if (provider.isAvailable) {
+                    statusDiv.innerHTML = `<div class="success">✅ LLM Provider Available: ${provider.activeProvider} (${provider.activeModel})</div>`;
+                } else {
+                    statusDiv.innerHTML = '<div class="error">❌ No LLM Provider Available</div>';
+                }
+                
+                resultDiv.textContent = JSON.stringify(result, null, 2);
+                resultDiv.style.display = 'block';
+                
+            } catch (error) {
+                statusDiv.innerHTML = '<div class="error">❌ Error testing provider detection</div>';
+                resultDiv.textContent = error.toString();
+                resultDiv.style.display = 'block';
+            }
+        }
+
+        async function testFlashcardGeneration() {
+            const statusDiv = document.getElementById('flashcard-status');
+            const resultDiv = document.getElementById('flashcard-result');
+            
+            statusDiv.innerHTML = '<div class="info"><span class="loading"></span> Testing AI Flashcard Generation...</div>';
+            resultDiv.style.display = 'none';
+            
+            try {
+                const provider = new LocalLLMProvider();
+                await provider.detectAvailableProviders();
+                
+                if (!provider.isAvailable) {
+                    throw new Error('No LLM provider available');
+                }
+                
+                const testContent = "JavaScript is a programming language that runs in web browsers and on servers.";
+                const result = await provider.generateFlashcards(testContent, {
+                    cardCount: 2,
+                    difficulty: 'medium'
+                });
+                
+                statusDiv.innerHTML = '<div class="success">✅ Flashcards Generated Successfully</div>';
+                resultDiv.textContent = JSON.stringify(result, null, 2);
+                resultDiv.style.display = 'block';
+                
+            } catch (error) {
+                statusDiv.innerHTML = '<div class="error">❌ Error generating flashcards</div>';
+                resultDiv.textContent = error.toString();
+                resultDiv.style.display = 'block';
+            }
+        }
+
+        async function testScheduleGeneration() {
+            const statusDiv = document.getElementById('schedule-status');
+            const resultDiv = document.getElementById('schedule-result');
+            
+            statusDiv.innerHTML = '<div class="info"><span class="loading"></span> Testing AI Schedule Generation...</div>';
+            resultDiv.style.display = 'none';
+            
+            try {
+                const provider = new LocalLLMProvider();
+                await provider.detectAvailableProviders();
+                
+                if (!provider.isAvailable) {
+                    throw new Error('No LLM provider available');
+                }
+                
+                const testScheduleRequest = {
+                    subjects: ['JavaScript', 'Mathematics'],
+                    dailyHours: 4,
+                    learningStyle: 'visual',
+                    goals: 'exam_preparation'
+                };
+                
+                const result = await provider.generateSchedule(testScheduleRequest);
+                
+                statusDiv.innerHTML = '<div class="success">✅ Schedule Generated Successfully</div>';
+                resultDiv.textContent = JSON.stringify(result, null, 2);
+                resultDiv.style.display = 'block';
+                
+            } catch (error) {
+                statusDiv.innerHTML = '<div class="error">❌ Error generating schedule</div>';
+                resultDiv.textContent = error.toString();
+                resultDiv.style.display = 'block';
+            }
+        }
+
+        async function testSmartScheduleController() {
+            const statusDiv = document.getElementById('controller-status');
+            const resultDiv = document.getElementById('controller-result');
+            
+            statusDiv.innerHTML = '<div class="info"><span class="loading"></span> Testing Smart Schedule Controller...</div>';
+            resultDiv.style.display = 'none';
+            
+            try {
+                // Test if the controller class is available
+                if (typeof SmartScheduleController === 'undefined') {
+                    throw new Error('SmartScheduleController class not found');
+                }
+                
+                // Test if AISmartScheduler is available
+                if (typeof AISmartScheduler === 'undefined') {
+                    throw new Error('AISmartScheduler class not found');
+                }
+                
+                const result = {
+                    SmartScheduleController: 'Available',
+                    AISmartScheduler: 'Available',
+                    UserLearningProfile: typeof UserLearningProfile !== 'undefined' ? 'Available' : 'Missing',
+                    BiorhythmAnalyzer: typeof BiorhythmAnalyzer !== 'undefined' ? 'Available' : 'Missing',
+                    ScheduleOptimizer: typeof ScheduleOptimizer !== 'undefined' ? 'Available' : 'Missing',
+                    ContextAwareScheduling: typeof ContextAwareScheduling !== 'undefined' ? 'Available' : 'Missing'
+                };
+                
+                statusDiv.innerHTML = '<div class="success">✅ All Smart Scheduling Components Available</div>';
+                resultDiv.textContent = JSON.stringify(result, null, 2);
+                resultDiv.style.display = 'block';
+                
+            } catch (error) {
+                statusDiv.innerHTML = '<div class="error">❌ Error testing schedule controller</div>';
+                resultDiv.textContent = error.toString();
+                resultDiv.style.display = 'block';
+            }
+        }
+
+        async function testDirectOllamaAPI() {
+            const statusDiv = document.getElementById('ollama-status');
+            const resultDiv = document.getElementById('ollama-result');
+            
+            statusDiv.innerHTML = '<div class="info"><span class="loading"></span> Testing Direct Ollama API Call...</div>';
+            resultDiv.style.display = 'none';
+            
+            try {
+                const response = await fetch('http://localhost:11434/api/generate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        model: 'llama3.2:3b',
+                        prompt: 'Create a simple flashcard about JavaScript. Format: Question: [question] Answer: [answer]',
+                        stream: false
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const result = await response.json();
+                
+                statusDiv.innerHTML = '<div class="success">✅ Direct Ollama API Call Successful</div>';
+                resultDiv.textContent = JSON.stringify(result, null, 2);
+                resultDiv.style.display = 'block';
+                
+            } catch (error) {
+                statusDiv.innerHTML = '<div class="error">❌ Error with direct API call</div>';
+                resultDiv.textContent = error.toString();
+                resultDiv.style.display = 'block';
+            }
+        }
+
+        // Auto-run provider detection on page load
+        window.addEventListener('load', () => {
+            console.log('🚀 AI Integration Test Page Loaded');
+            setTimeout(() => {
+                testProviderDetection();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
